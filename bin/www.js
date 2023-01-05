@@ -6,9 +6,7 @@ var app = require('../app');
 var debug = require('debug')('CrimeCameraServer:server');
 var http = require('http');
 var fetch = require('node-fetch');
-//var nodeMediaServer = require('node-media-server');
-var streamMons = require('../models/streamMons.js');
-var { formatArguments, tryValue, cleanupVideos, mountNodes } = require('../helperFunctions');
+var { formatArguments, tryValue } = require('../helperFunctions');
 
 /**
  * Get port from environment and store in Express.
@@ -30,22 +28,6 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-let tasks = [];
-
-function retreiveNodesList() {
-  fetch('http://localhost:3000/api/nodes')
-    .then((response) => response.json())
-    .then((json) => {
-      json.map((node) => {
-        tasks.push({
-          app: node.name,
-          mode: 'pull',
-          edge: 'rtmp://' + node.config.ip,
-        });
-      });
-    });
-}
 
 /**
  * Event listener for HTTP server "error" event.

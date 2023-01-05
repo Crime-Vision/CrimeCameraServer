@@ -1,6 +1,13 @@
 // require basic
+const AdminJS = require('adminjs')
+const AdminJSExpress = require('@adminjs/express')
 var express = require('express');
+
+
 var app = express();
+const admin = new AdminJS({})
+
+
 var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var logger = require('morgan');
@@ -9,11 +16,6 @@ var path = require('path');
 
 // require routers
 var nodesRouter = require('./routes/nodes');
-var perfmonsRouter = require('./routes/perfMons');
-var serversRouter = require('./routes/servers');
-var streamsRouter = require('./routes/streams');
-var videosRouter = require('./routes/videos');
-var cameraConfigRouter = require('./routes/cameraConfig');
 
 // require environment
 require('dotenv').config();
@@ -23,18 +25,20 @@ require('events').EventEmitter.defaultMaxListeners = 100;
 const cors = require('cors');
 app.use(cors());
 
-// establish database connection
-mongoose.connect(
-  process.env.MONGO_CONNECTION_STRING,
-  {
-    useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-  function (err) {
-    if (err) throw err;
-  }
-);
+if(process.env.MONGO_CONNECTION_STRING) {
+  // establish database connection
+  mongoose.connect(
+    process.env.MONGO_CONNECTION_STRING,
+    {
+      useFindAndModify: false,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    },
+    function (err) {
+      if (err) throw err;
+    }
+  );
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,12 +48,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/api/nodes', nodesRouter);
-app.use('/api/perfmons', perfmonsRouter);
-app.use('/api/servers', serversRouter);
-app.use('/api/streams', streamsRouter);
-app.use('/api/videos', videosRouter);
-app.use('/api/cameraConfig', cameraConfigRouter);
+
+const adminRouter = AdminJSExpress.buildRouter(admin)
+app.use(admin.options.rootPath, adminRouter)
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
