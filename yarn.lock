@@ -56,6 +56,15 @@
   dependencies:
     "path-to-regexp" "^6.2.0"
 
+"@adminjs/mongoose@^3.0.1":
+  "integrity" "sha512-HX30VuHhE3KH2xL/E9XPe6ohExjfy9GecIMmP7OygUt1dRBJY2u/hRzZ09bf8HsOCRrR5yA8AbuxPBi1hGiQ1A=="
+  "resolved" "https://registry.npmjs.org/@adminjs/mongoose/-/mongoose-3.0.1.tgz"
+  "version" "3.0.1"
+  dependencies:
+    "escape-regexp" "0.0.1"
+    "flat" "^4.1.0"
+    "lodash" "^4.17.21"
+
 "@ampproject/remapping@^2.1.0":
   "integrity" "sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w=="
   "resolved" "https://registry.npmjs.org/@ampproject/remapping/-/remapping-2.2.0.tgz"
@@ -3213,6 +3222,11 @@
   "resolved" "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
   "version" "1.0.3"
 
+"escape-regexp@0.0.1":
+  "integrity" "sha512-jVgdsYRa7RKxTT6MKNC3gdT+BF0Gfhpel19+HMRZJC2L0PufB0XOBuXBoXj29NKHwuktnAXd1Z1lyiH/8vOTpw=="
+  "resolved" "https://registry.npmjs.org/escape-regexp/-/escape-regexp-0.0.1.tgz"
+  "version" "0.0.1"
+
 "escape-string-regexp@^1.0.5":
   "integrity" "sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg=="
   "resolved" "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz"
@@ -4787,7 +4801,7 @@
   "resolved" "https://registry.npmjs.org/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz"
   "version" "1.0.2"
 
-"mongoose@*", "mongoose@^5.11.13":
+"mongoose@*", "mongoose@^5.11.13", "mongoose@>=5":
   "integrity" "sha512-j+BlQjjxgZg0iWn42kLeZTB91OejcxWpY2Z50bsZTiKJ7HHcEtcY21Godw496GMkBqJMTzmW7G/kZ04mW+Cb7Q=="
   "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-5.13.14.tgz"
   "version" "5.13.14"
