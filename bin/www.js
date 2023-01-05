@@ -14,7 +14,7 @@ var { formatArguments, tryValue, cleanupVideos, mountNodes } = require('../helpe
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = process.env.PORT || '3000';
 app.set('port', port);
 
 /**
@@ -45,64 +45,6 @@ function retreiveNodesList() {
         });
       });
     });
-}
-/*
-const config = {
-  rtmp: {
-    port: 1936,
-    chunk_size: 60000,
-    gop_cache: true,
-    ping: 30,
-    ping_timeout: 60,
-  },
-  http: {
-    port: 8000,
-    allow_origin: '*',
-  },
-
-  relay: {
-    ffmpeg: '/usr/bin/ffmpeg',
-    tasks: tasks,
-  },
-};
-
-var nms = new nodeMediaServer(config);
-*/
-setTimeout(() => {
-  retreiveNodesList();
- 
-}, 4000);
-
-setInterval(() => {
-  cleanupVideos();
-}, 900000);
-
-cleanupVideos();
-
-setInterval(() => {
-  mountNodes();
-}, 900000);
-
-mountNodes();
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
 }
 
 /**
