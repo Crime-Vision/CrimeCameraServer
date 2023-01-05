@@ -1,17 +1,29 @@
 // require basic
+const mongoose = require('mongoose');
 const AdminJS = require('adminjs')
 const AdminJSExpress = require('@adminjs/express')
-var express = require('express');
+const express = require('express');
 
+var nodes = require('./models/nodes');
+
+const AdminJSMongoose = require('@adminjs/mongoose')
+
+AdminJS.registerAdapter({
+  Resource: AdminJSMongoose.Resource,
+  Database: AdminJSMongoose.Database,
+})
 
 var app = express();
-const admin = new AdminJS({})
 
+const adminOptions = {
+  resources: [nodes],
+}
+
+app.admin = new AdminJS(adminOptions)
 
 var cookieParser = require('cookie-parser');
 var createError = require('http-errors');
 var logger = require('morgan');
-var mongoose = require('mongoose');
 var path = require('path');
 
 // require routers
@@ -33,6 +45,7 @@ if(process.env.MONGO_CONNECTION_STRING) {
       useFindAndModify: false,
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      dbName: 'crimevision'
     },
     function (err) {
       if (err) throw err;
@@ -51,8 +64,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/nodes', nodesRouter);
 
-const adminRouter = AdminJSExpress.buildRouter(admin)
-app.use(admin.options.rootPath, adminRouter)
+const adminRouter = AdminJSExpress.buildRouter(app.admin)
+app.use(app.admin.options.rootPath, adminRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
