@@ -14,6 +14,7 @@ const adminJs = new AdminJS({
   databases: [],
   rootPath: '/admin',
   resources: [
+    { resource: heartbeats},
     { resource: nodes, options: { 
       listProperties: ['name', 'lastCheckIn', 'config.ip', 'config.locationLat', 
                        'config.locationLong'],

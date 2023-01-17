@@ -5,6 +5,7 @@ const AdminJSExpress = require('@adminjs/express')
 const express = require('express');
 
 var nodes = require('./models/nodes');
+var heartbeats = require('./models/heartbeats');
 
 const AdminJSMongoose = require('@adminjs/mongoose')
 
@@ -16,7 +17,7 @@ AdminJS.registerAdapter({
 var app = express();
 
 const adminOptions = {
-  resources: [nodes],
+  resources: [nodes, heartbeats],
 }
 
 app.admin = new AdminJS(adminOptions)

@@ -11,6 +11,8 @@ const schema = mongoose.Schema({
     locationLong: { type: Number, default: 0 },
     videoDriveEncryptionKey: { type: String, default: '' },
     buddyDriveEncryptionKey: { type: String, default: '' },
+    rtspUsername: { type: String, default: ''},
+    rtspPassword: { type: String, default: ''}
   },
   // Default
   createdAt: { type: Date, default: Date.now },
