@@ -11,7 +11,7 @@ networks:
 services:
   mongo:
     container_name: crimevision-mongo
-    image: mongo:latest
+    image: mongo:4.4
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongo
       - MONGO_INITDB_ROOT_PASSWORD=mongo
