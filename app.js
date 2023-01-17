@@ -28,6 +28,7 @@ var path = require('path');
 
 // require routers
 var nodesRouter = require('./routes/nodes');
+var heartbeatsRouter = require('./routes/heartbeats');
 
 // require environment
 require('dotenv').config();
@@ -63,9 +64,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/nodes', nodesRouter);
-
 const adminRouter = AdminJSExpress.buildRouter(app.admin)
 app.use(app.admin.options.rootPath, adminRouter)
+app.use('/api/heartbeats', heartbeatsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
