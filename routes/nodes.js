@@ -51,9 +51,9 @@ router.post('/:nodeName', async (req, res) => {
   });
 });
 
-router.post('/checkin/:hostname', async(req, res) => {
+router.post('/checkin/:name', async(req, res) => {
   nodes
-    .findOneAndUpdate({ "config.hostName": req.params.hostname }, { $set: { lastCheckIn: new Date() } })
+    .findOneAndUpdate({ name: req.params.name }, { $set: { lastCheckIn: new Date() } })
     .exec(function (err, node) {
       if (err) {
         res.status(500).send(err);
