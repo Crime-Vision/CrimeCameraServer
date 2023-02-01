@@ -11,7 +11,8 @@ const Camera = mongoose.Schema({
   localIP: { type: String, default: '10.10.5.1' },
   rtspURL: { type: String, default: 'rtsp://.../'},
   ptz: { type: Boolean, default: false },
-  humanReadableName: { type:String, default:"Direction and Location"}
+  humanReadableName: { type:String, default:"Direction and Location"},
+  cameraNumber: {type: Number, default: 1}
 }, {_id: false} );
 
 const schema = mongoose.Schema({
