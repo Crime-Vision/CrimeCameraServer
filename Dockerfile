@@ -14,4 +14,4 @@ RUN npm ci
 
 EXPOSE 3000
 
-CMD npm start
+CMD npm ci && ./node_modules/nodemon/bin/nodemon.js bin/www.js
