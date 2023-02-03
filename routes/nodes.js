@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var nodes = require('../models/nodes');
+var Heartbeat = require('../models/heartbeats.js')
 
 router.get('/', async (req, res) => {
   nodes.find({}, function (err, docs) {
@@ -61,6 +62,16 @@ router.post('/checkin/:name', async(req, res) => {
         res.status(200).send('Node updated!');
       }
     });
+    
+  new Heartbeat(req.body).save(err => {
+    if(!err) {
+      console.log("Heartbeat Saved")
+      console.log(req.body)
+    } else {
+      console.log("Heartbeat not saved!")
+      console.log(err)
+    }
+  });
 })
 
 router.post('/sysInfo/:nodeName', async (req, res) => {
