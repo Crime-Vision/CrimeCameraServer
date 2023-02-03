@@ -12,7 +12,10 @@ const Camera = mongoose.Schema({
   rtspURL: { type: String, default: 'rtsp://.../'},
   ptz: { type: Boolean, default: false },
   humanReadableName: { type:String, default:"Direction and Location"},
-  cameraNumber: {type: Number, default: 1}
+  cameraNumber: {type: Number, default: 1},
+  localRTSPUsername: { type: String, default: 'stream' },
+  localRTSPPassword: { type: String, default: 'Super$Secret$1' },
+  localRTSPPath: { type: String, default: '/cam/realmonitor?channel=1&subtype=0'}
 }, {_id: false} );
 
 const schema = mongoose.Schema({
