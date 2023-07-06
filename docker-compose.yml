@@ -21,7 +21,7 @@ services:
   crimevision-server:
     container_name: crimevision-server
     ports:
-      - ${CRIMEVISION_NETWORK_INTERFACE}:3000:3000
+      - 3000:3000
     environment:
       - "MONGO_CONNECTION_STRING=mongodb://mongo:mongo@mongo"
     build: .
